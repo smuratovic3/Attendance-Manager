@@ -1,32 +1,52 @@
-p{
-    font-size: 25px;
-    font-style:inherit;
+h1 {
+    font-style: bold;
     padding-left: 2px;
     margin: 30px;
-  
+
 }
 
-p1{
+h2,h3 {
     font-size: 20px;
-    margin-left: 33px;
-}
-
-p2{
-    font-size: 20px;
-    margin-left: 33px;
-}
-p3{
-    font-size: 20px;
-    margin-left: 33px;
+    padding-left: 2px;
+    margin: 30px;
 }
 
 table {
-    font-family: arial, sans-serif;
+  
     border-collapse: collapse;
-    width: 70%;
+    width: 80%;
+    margin: 30px;
+
 }
+
 td, th {
     border: 1px solid black;
-    text-align: center;
     padding: 8px;
+}
+
+td{
+    height: 50px;
+    text-align: center;
+}
+
+th{
+    height: 50px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.prisutan {
+    background-color: lightgreen;
+}
+
+.odsutan {
+    background-color: red;
+}
+.zadnja{
+    width: 40%;
+}
+
+.sedma{
+    text-align: center;
+    width: 20px;
 }

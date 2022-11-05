@@ -24,17 +24,32 @@ li div {
     display: inline-block;
 }
 
-.topnav {
-    overflow: hidden;
-    position: sticky;
-    background-color: rgb(255, 166, 0);
-    top: 0;
-    width: 100%;
-    margin: auto;
-
-
+@media screen and (min-width:800px ){
+    .topnav {
+        overflow: hidden;
+        position: sticky;
+        background-color: rgb(255, 166, 0);
+        top: 0;
+        width: 100%;
+        margin: auto;
+    
+    
+    }
 }
 
+@media screen and (max-width:800px){
+    .topnav {
+        overflow: hidden;
+        
+        background-color: rgb(255, 166, 0);
+        top: 0;
+        width: 100%;
+        margin: auto;
+    
+    
+    }
+
+}
 
 
 
