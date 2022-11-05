@@ -1,0 +1,32 @@
+p{
+    font-size: 25px;
+    font-style:inherit;
+    padding-left: 2px;
+    margin: 30px;
+  
+}
+
+p1{
+    font-size: 20px;
+    margin-left: 33px;
+}
+
+p2{
+    font-size: 20px;
+    margin-left: 33px;
+}
+p3{
+    font-size: 20px;
+    margin-left: 33px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 70%;
+}
+td, th {
+    border: 1px solid black;
+    text-align: center;
+    padding: 8px;
+}
