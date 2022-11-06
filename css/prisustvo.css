@@ -2,7 +2,6 @@ h1 {
     font-style: bold;
     padding-left: 2px;
     margin: 30px;
-
 }
 
 h2,h3 {
@@ -11,12 +10,9 @@ h2,h3 {
     margin: 30px;
 }
 
-table {
-  
+table {  
     border-collapse: collapse;
-    width: 80%;
     margin: 30px;
-
 }
 
 td, th {
@@ -42,6 +38,7 @@ th{
 .odsutan {
     background-color: red;
 }
+
 .zadnja{
     width: 40%;
 }

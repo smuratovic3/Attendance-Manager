@@ -24,7 +24,7 @@ li div {
     display: inline-block;
 }
 
-@media screen and (min-width:800px ){
+@media screen and (min-width:800px) {
     .topnav {
         overflow: hidden;
         position: sticky;
@@ -32,22 +32,18 @@ li div {
         top: 0;
         width: 100%;
         margin: auto;
-    
-    
-    }
+     }
 }
 
-@media screen and (max-width:800px){
+@media screen and (max-width:800px) {
     .topnav {
         overflow: hidden;
-        
+
         background-color: rgb(255, 166, 0);
         top: 0;
         width: 100%;
         margin: auto;
-    
-    
-    }
+     }
 
 }
 
@@ -57,14 +53,11 @@ h1 {
 
     font-size: 30px;
     text-align: center;
-
-
 }
 
 h2 {
     font-size: 20px;
     text-align: center;
-
 }
 
 
@@ -79,7 +72,6 @@ h2 {
     grid-auto-rows: 100px;
     margin: 10px;
     grid-template-columns: repeat(auto-fit, 200px);
-
 }
 
 
@@ -88,28 +80,21 @@ h2 {
     border: 2px solid black;
     padding: 10px;
     background-color: white;
-
-
 }
 
 .izborni {
     border: 2px solid black;
     padding: 10px;
     background-color: powderblue;
-    ;
-
-
 }
 
 .sivi {
     border: 2px solid black;
     padding: 10px;
     background-color: gray;
-
-
 }
 
 img {
     height: 40px;
-    width: 50px;
+    width: 40px;
 }
