@@ -7,10 +7,10 @@ body {
     background-color: bisque;
 }
 
-#ri,
-#ee,
-#aie,
-#tk {
+#RI,
+#EE,
+#AIE,
+#TK {
     float: left;
     margin-left: 100px;
     margin-top: 10px;
@@ -32,18 +32,17 @@ li div {
         top: 0;
         width: 100%;
         margin: auto;
-     }
+    }
 }
 
 @media screen and (max-width:800px) {
     .topnav {
         overflow: hidden;
-
         background-color: rgb(255, 166, 0);
         top: 0;
         width: 100%;
         margin: auto;
-     }
+    }
 
 }
 
@@ -65,12 +64,10 @@ h2 {
 
 .wrapper {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
     padding: 10px;
     column-gap: 10px;
     row-gap: 10px;
     grid-auto-rows: 100px;
-    margin: 10px;
     grid-template-columns: repeat(auto-fit, 200px);
 }
 

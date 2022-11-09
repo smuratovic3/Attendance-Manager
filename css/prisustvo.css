@@ -1,34 +1,29 @@
-h1 {
-    font-style: bold;
+h1,h2,h3 {
+    font-style: normal;
     padding-left: 2px;
     margin: 30px;
 }
 
-h2,h3 {
-    font-size: 20px;
-    padding-left: 2px;
-    margin: 30px;
-}
-
-table {  
+table {
     border-collapse: collapse;
     margin: 30px;
 }
-
-td, th {
+td,
+th {
     border: 1px solid black;
     padding: 8px;
 }
 
-td{
-    height: 50px;
+td {
+    height: 40px;
     text-align: center;
 }
 
-th{
+th {
     height: 50px;
     text-align: left;
     vertical-align: top;
+    background-color: lightgray;
 }
 
 .prisutan {
@@ -39,11 +34,12 @@ th{
     background-color: red;
 }
 
-.zadnja{
-    width: 40%;
+
+.tabela{
+    overflow-x:auto !important;
+
 }
 
-.sedma{
+.sedma {
     text-align: center;
-    width: 20px;
 }
