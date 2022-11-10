@@ -5,6 +5,7 @@ html {
 
 body {
     background-color: bisque;
+
 }
 
 #RI,
@@ -12,46 +13,62 @@ body {
 #AIE,
 #TK {
     float: left;
-    margin-left: 100px;
+    margin-left: 50px;
     margin-top: 10px;
+
+
 }
 
 ul {
     list-style-type: none;
+
 }
 
 li div {
     display: inline-block;
+
 }
 
-@media screen and (min-width:800px) {
-    .topnav {
-        overflow: hidden;
+a {
+    color: black;
+}
+
+.topnav {
+  
+
+    display: grid;
+    grid-template-columns: auto;
+    grid-row-gap: 10px;
+    background-color: rgb(255, 166, 0);
+    border: 1px solid ;
+    width: max-content;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+
+}
+
+
+@media only screen and (min-width:920px) {
+   
+    .topnav{
+        grid-template-columns: auto auto auto auto;
+        grid-row-gap: 50px;
         position: sticky;
-        background-color: rgb(255, 166, 0);
-        top: 0;
-        width: 100%;
-        margin: auto;
-    }
-}
+        top:0;
+        justify-content: left;
+        width: auto;
 
-@media screen and (max-width:800px) {
-    .topnav {
-        overflow: hidden;
-        background-color: rgb(255, 166, 0);
-        top: 0;
-        width: 100%;
-        margin: auto;
     }
 
 }
-
-
 
 h1 {
 
     font-size: 30px;
     text-align: center;
+
 }
 
 h2 {
@@ -67,7 +84,7 @@ h2 {
     padding: 10px;
     column-gap: 10px;
     row-gap: 10px;
-    grid-auto-rows: 100px;
+    grid-auto-rows: 110px;
     grid-template-columns: repeat(auto-fit, 200px);
 }
 
