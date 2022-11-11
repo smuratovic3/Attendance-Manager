@@ -86,6 +86,7 @@ h2 {
     row-gap: 10px;
     grid-auto-rows: 110px;
     grid-template-columns: repeat(auto-fit, 200px);
+    justify-content: center;
 }
 
 
