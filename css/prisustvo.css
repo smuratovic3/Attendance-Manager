@@ -8,6 +8,7 @@ table {
     border-collapse: collapse;
     margin: 30px;
 }
+
 table,td,
 th {
     border: 1px solid black;
@@ -31,22 +32,24 @@ th {
 }
 
 .odsutan {
-    background-color: red;
+    background-color: rgb(249, 74, 74);
 }
 
+.bijelo{
+    background-color: white;
+}
 
 .tabela{
     overflow-x:auto !important;
-
 }
 
 .sedma {
     text-align: center;
 }
+
 .zadnja{
-    border-bottom: 2 px solid black;
+    border-bottom: 2px solid black;
     border-top: 0;
     border-left: 0;
-    border-right: 0;
-  
+    border-right: 0;  
 }

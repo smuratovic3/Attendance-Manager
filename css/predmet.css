@@ -1,11 +1,9 @@
 html {
     scroll-padding: 130px;
-
 }
 
 body {
     background-color: bisque;
-
 }
 
 #RI,
@@ -15,18 +13,14 @@ body {
     float: left;
     margin-left: 50px;
     margin-top: 10px;
-
-
 }
 
 ul {
     list-style-type: none;
-
 }
 
 li div {
     display: inline-block;
-
 }
 
 a {
@@ -34,50 +28,27 @@ a {
 }
 
 .topnav {
-  
-
     display: grid;
     grid-template-columns: auto;
     grid-row-gap: 10px;
     background-color: rgb(255, 166, 0);
-    border: 1px solid ;
+    border: 1px solid;
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 5px;
     padding-right: 5px;
-
-}
-
-
-@media only screen and (min-width:920px) {
-   
-    .topnav{
-        grid-template-columns: auto auto auto auto;
-        grid-row-gap: 50px;
-        position: sticky;
-        top:0;
-        justify-content: left;
-        width: auto;
-
-    }
-
 }
 
 h1 {
-
     font-size: 30px;
     text-align: center;
-
 }
 
 h2 {
     font-size: 20px;
     text-align: center;
 }
-
-
-
 
 .wrapper {
     display: grid;
@@ -88,8 +59,6 @@ h2 {
     grid-template-columns: repeat(auto-fit, 200px);
     justify-content: center;
 }
-
-
 
 .redovni {
     border: 2px solid black;
@@ -112,4 +81,15 @@ h2 {
 img {
     height: 40px;
     width: 40px;
+}
+
+@media only screen and (min-width:920px) {
+    .topnav {
+        grid-template-columns: auto auto auto auto;
+        grid-row-gap: 50px;
+        position: sticky;
+        top: 0;
+        justify-content: left;
+        width: auto;
+    }
 }
