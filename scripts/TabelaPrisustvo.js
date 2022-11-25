@@ -2,10 +2,11 @@ let TabelaPrisustvo = function (divRef, podaci) {
   const MAKSIMALNI_BROJ_SEDMICA = 15;
 
   // Provjeri da li je div prazan
-  if (divRef.hasChildNodes()) {
-    divRef.innerHTML = "";
+  function isprazniSadrzaj() {
+    if (divRef.hasChildNodes()) {
+      divRef.innerHTML = "";
+    }
   }
-
   function provjeriDuplikat(array) {
     return new Set(array).size !== array.length;
   }
@@ -136,12 +137,18 @@ let TabelaPrisustvo = function (divRef, podaci) {
   }
   sedmice.sort();
 
+  isprazniSadrzaj();
+
   // VALIDACIJE 1-5
   if (
     !validacijaJedanIDva() ||
     validacijaTri() ||
     validacijaCetiri() ||
-    validacijaPet()
+    validacijaPet() ||
+    // 6. Postoji sedmica, između dvije sedmice za koje je uneseno prisustvo bar jednom
+    // studentu, u kojoj nema unesenog prisustva. Npr. uneseno je prisustvo za sedmice 1 i 3
+    // ali nijedan student nema prisustvo za sedmicu 2
+    sedmice[sedmice.length - 1] > sedmice.length
   ) {
     ispisiGresku();
     return;
