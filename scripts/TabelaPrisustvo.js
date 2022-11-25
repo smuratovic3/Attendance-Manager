@@ -107,6 +107,24 @@ let TabelaPrisustvo = function (divRef, podaci) {
     return status;
   }
 
+  // 5. Postoji prisustvo za studenta koji nije u listi studenata
+  function validacijaPet() {
+    let status = false;
+    let indexi = [];
+    for (let i = 0; i < podaci.studenti.length; i++) {
+      const student = podaci.studenti[i];
+      indexi.push(student.index);
+    }
+    for (let j = 0; j < podaci.prisustva.length; j++) {
+      const unos = podaci.prisustva[j];
+      if (!indexi.includes(unos.index)) {
+        status = true;
+        break;
+      }
+    }
+    return status;
+  }
+
   // Lista sedmica
   // Koristi se i u ostatku koda!
   let sedmice = [];
@@ -119,7 +137,12 @@ let TabelaPrisustvo = function (divRef, podaci) {
   sedmice.sort();
 
   // VALIDACIJE 1-5
-  if (!validacijaJedanIDva() || validacijaTri() || validacijaCetiri()) {
+  if (
+    !validacijaJedanIDva() ||
+    validacijaTri() ||
+    validacijaCetiri() ||
+    validacijaPet()
+  ) {
     ispisiGresku();
     return;
   }
