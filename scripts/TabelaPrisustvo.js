@@ -73,7 +73,27 @@ let TabelaPrisustvo = function (divRef, podaci) {
     return status;
   }
 
-  //Postoje dva ili više studenata sa istim indeksom u listi studenata
+  // 3. Isti student ima dva ili više unosa prisustva za istu sedmicu
+  function validacijaTri() {
+    let status = false;
+    for (let i = 0; i < podaci.studenti.length; i++) {
+      const student = podaci.studenti[i];
+      let sedmice = [];
+      for (let j = 0; j < podaci.prisustva.length; j++) {
+        const prisustvo = podaci.prisustva[j];
+        if (prisustvo.index === student.index) {
+          sedmice.push(prisustvo.sedmica);
+        }
+      }
+      if (provjeriDuplikat(sedmice)) {
+        status = true;
+        break;
+      }
+    }
+    return status;
+  }
+
+  // 4. Postoje dva ili više studenata sa istim indeksom u listi studenata
   function validacijaCetiri() {
     let status = false;
     let indexi = [];
@@ -99,7 +119,7 @@ let TabelaPrisustvo = function (divRef, podaci) {
   sedmice.sort();
 
   // VALIDACIJE 1-5
-  if (!validacijaJedanIDva() || validacijaCetiri()) {
+  if (!validacijaJedanIDva() || validacijaTri() || validacijaCetiri()) {
     ispisiGresku();
     return;
   }
