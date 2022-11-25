@@ -103,3 +103,7 @@ let objekat = {
 
 //instanciranje
 let prisustvo = TabelaPrisustvo(div, objekat);
+
+//pozivanje metoda
+prisustvo.sljedecaSedmica();
+prisustvo.prethodnaSedmica();
