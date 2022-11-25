@@ -6,6 +6,12 @@ let TabelaPrisustvo = function (divRef, podaci) {
     divRef.innerHTML = "";
   }
 
+  function ispisiGresku() {
+    let div = document.createElement("div");
+    div.innerHTML = "Podaci o prisustvu nisu validni!";
+    divRef.appendChild(div);
+  }
+
   function arapskiURimski(broj) {
     switch (broj) {
       case 1:
@@ -43,6 +49,26 @@ let TabelaPrisustvo = function (divRef, podaci) {
     }
   }
 
+  // 1. Broj prisustva na predavanju/vježbi je veći od broja predavanja/vježbi sedmično
+  // 2. Broj prisustva je manji od nule
+
+  function validacijaJedanIDva() {
+    let status = true;
+    for (let i = 0; i < podaci.prisustva.length; i++) {
+      const unos = podaci.prisustva[i];
+      if (
+        unos.predavanja > podaci.brojPredavanjaSedmicno ||
+        unos.vjezbe > podaci.brojVjezbiSedmicno ||
+        unos.predavanja < 0 ||
+        unos.vjezbe < 0
+      ) {
+        status = false;
+        break;
+      }
+    }
+    return status;
+  }
+
   // Lista sedmica
   // Koristi se i u ostatku koda!
   let sedmice = [];
@@ -53,6 +79,12 @@ let TabelaPrisustvo = function (divRef, podaci) {
     }
   }
   sedmice.sort();
+
+  // VALIDACIJE 1-5
+  if (!validacijaJedanIDva()) {
+    ispisiGresku();
+    return;
+  }
 
   //Naziv predmeta i broj predavanja i vjezbi sedmicno
   var predmet = document.createElement("h1");
