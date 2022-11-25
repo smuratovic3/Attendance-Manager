@@ -56,7 +56,6 @@ let TabelaPrisustvo = function (divRef, podaci) {
 
   // 1. Broj prisustva na predavanju/vježbi je veći od broja predavanja/vježbi sedmično
   // 2. Broj prisustva je manji od nule
-
   function validacijaJedanIDva() {
     let status = true;
     for (let i = 0; i < podaci.prisustva.length; i++) {
@@ -125,6 +124,10 @@ let TabelaPrisustvo = function (divRef, podaci) {
     }
     return status;
   }
+
+  //implementacija metoda
+  let sljedecaSedmica = function () {};
+  let prethodnaSedmica = function () {};
 
   // Lista sedmica
   // Koristi se i u ostatku koda!
@@ -322,6 +325,29 @@ let TabelaPrisustvo = function (divRef, podaci) {
     table.appendChild(secondRowContentTr);
   }
 
-  // Dodaanje tabele na referentni
+  // Dodavanje tabele na referentni div
   divRef.appendChild(table);
+
+  //Dodavanje buttona
+  let btn1 = document.createElement("button");
+  btn1.classList.add("leftButton");
+  let leftArrow = document.createElement("i");
+  leftArrow.classList.add("fa-solid", "fa-arrow-left");
+  btn1.onclick = prethodnaSedmica;
+  btn1.appendChild(leftArrow);
+
+  let btn2 = document.createElement("button");
+  btn2.classList.add("rightButton");
+  let rightArrow = document.createElement("i");
+  rightArrow.classList.add("fa-solid", "fa-arrow-right");
+  btn2.onclick = sljedecaSedmica;
+  btn2.appendChild(rightArrow);
+
+  divRef.appendChild(btn1);
+  divRef.appendChild(btn2);
+
+  return {
+    sljedecaSedmica: sljedecaSedmica,
+    prethodnaSedmica: prethodnaSedmica,
+  };
 };

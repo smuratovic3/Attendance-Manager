@@ -53,3 +53,15 @@ th {
     border-left: 0;
     border-right: 0;  
 }
+
+.leftButton{
+    margin-left: 590px;
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+.rightButton{
+     font-size: 25px;
+}
+
+
