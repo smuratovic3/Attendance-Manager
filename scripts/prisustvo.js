@@ -23,7 +23,6 @@ let objekat = {
       vjezbe: 2,
       index: 12346,
     },
-
     {
       sedmica: 2,
       predavanja: 2,

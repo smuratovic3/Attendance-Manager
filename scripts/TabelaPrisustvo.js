@@ -6,6 +6,10 @@ let TabelaPrisustvo = function (divRef, podaci) {
     divRef.innerHTML = "";
   }
 
+  function provjeriDuplikat(array) {
+    return new Set(array).size !== array.length;
+  }
+
   function ispisiGresku() {
     let div = document.createElement("div");
     div.innerHTML = "Podaci o prisustvu nisu validni!";
@@ -69,6 +73,20 @@ let TabelaPrisustvo = function (divRef, podaci) {
     return status;
   }
 
+  //Postoje dva ili više studenata sa istim indeksom u listi studenata
+  function validacijaCetiri() {
+    let status = false;
+    let indexi = [];
+    for (let i = 0; i < podaci.studenti.length; i++) {
+      const student = podaci.studenti[i];
+      indexi.push(student.index);
+    }
+    if (provjeriDuplikat(indexi)) {
+      status = true;
+    }
+    return status;
+  }
+
   // Lista sedmica
   // Koristi se i u ostatku koda!
   let sedmice = [];
@@ -81,7 +99,7 @@ let TabelaPrisustvo = function (divRef, podaci) {
   sedmice.sort();
 
   // VALIDACIJE 1-5
-  if (!validacijaJedanIDva()) {
+  if (!validacijaJedanIDva() || validacijaCetiri()) {
     ispisiGresku();
     return;
   }
