@@ -325,7 +325,7 @@ let TabelaPrisustvo = function (divRef, podaci) {
         const unos = podaci.prisustva.find(function (p) {
           return (
             p.index === student.index &&
-            p.sedmica === sedmice[sedmice.length - 1]
+            p.sedmica === sedmice[sedmicaUFokusu - 1]
           );
         });
 
@@ -344,7 +344,7 @@ let TabelaPrisustvo = function (divRef, podaci) {
         const unos = podaci.prisustva.find(function (p) {
           return (
             p.index === student.index &&
-            p.sedmica === sedmice[sedmice.length - 1]
+            p.sedmica === sedmice[sedmicaUFokusu - 1]
           );
         });
 
