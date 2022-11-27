@@ -37,7 +37,7 @@ let objekat = {
     },
     {
       sedmica: 3,
-      predavanja: 2,
+      predavanja: 1,
       vjezbe: 0,
       index: 12345,
     },
@@ -50,13 +50,13 @@ let objekat = {
     {
       sedmica: 4,
       predavanja: 2,
-      vjezbe: 0,
+      vjezbe: 1,
       index: 12345,
     },
     {
       sedmica: 4,
       predavanja: 2,
-      vjezbe: 0,
+      vjezbe: 2,
       index: 12346,
     },
     {
@@ -68,7 +68,7 @@ let objekat = {
     {
       sedmica: 5,
       predavanja: 2,
-      vjezbe: 0,
+      vjezbe: 1,
       index: 12346,
     },
     {
@@ -103,7 +103,3 @@ let objekat = {
 
 //instanciranje
 let prisustvo = TabelaPrisustvo(div, objekat);
-
-//pozivanje metoda
-prisustvo.sljedecaSedmica();
-prisustvo.prethodnaSedmica();

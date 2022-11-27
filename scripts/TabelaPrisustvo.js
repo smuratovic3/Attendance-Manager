@@ -154,7 +154,7 @@ let TabelaPrisustvo = function (divRef, podaci) {
   sedmice.sort();
 
   // Sedmica u fokusu
-  let sedmicaUFokusu = sedmice.length + 1;
+  let sedmicaUFokusu = sedmice.length;
 
   isprazniSadrzaj();
 
@@ -366,6 +366,8 @@ let TabelaPrisustvo = function (divRef, podaci) {
     divRef.appendChild(table);
   }
 
+  iscrtajtabelu(sedmicaUFokusu);
+
   // Implementacija metoda
   let sljedecaSedmica = function () {
     sedmicaUFokusu++;
@@ -410,6 +412,8 @@ let TabelaPrisustvo = function (divRef, podaci) {
     divRef.appendChild(btn1);
     divRef.appendChild(btn2);
   }
+
+  dodajButtone();
 
   return {
     sljedecaSedmica: sljedecaSedmica,
