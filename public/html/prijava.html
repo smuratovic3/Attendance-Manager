@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prijava</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prijava.css" />
+  </head>
+  <body>
+    <div>
+      <form id="formaPrijava">
+        <label for="username">Unesite username: </label>
+        <br />
+        <input id="username" type="text" name="username" />
+        <br />
+        <br />
+        <label for="password">Unesite password: </label>
+        <br />
+        <input id="password" type="password" name="password" />
+        <br />
+        <br />
+        <input type="button" id="potvrda" value="Potvrdi" onclick="potvrdi()" />
+        <br />
+        <br />
+      </form>
+    </div>
+    <div id="prostor_za_poruku"></div>
+    <!--ako je neuspjesna poruka-->
+    <script src="prijava.js"></script>
+    <script src="poziviAjax.js"></script>
+  </body>
+</html>
