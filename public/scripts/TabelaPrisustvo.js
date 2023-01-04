@@ -329,12 +329,22 @@ let TabelaPrisustvo = function (divRef, podaci) {
           );
         });
 
+        let klasa = "bijelo";
+        if (unos) {
+          klasa = "prisutan";
+          if (j + 1 > unos.predavanja) {
+            klasa = "odsutan";
+          }
+        }
+        /*
         let klasa = "prisutan";
         if (j + 1 > unos.predavanja) {
           klasa = "odsutan";
         }
+*/
 
         let td = document.createElement("td");
+        //td.setAttribute("onclick","promijeni()")
         td.classList.add(klasa);
         secondRowContentTr.appendChild(td);
       }
@@ -348,9 +358,12 @@ let TabelaPrisustvo = function (divRef, podaci) {
           );
         });
 
-        let klasa = "prisutan";
-        if (j + 1 > unos.vjezbe) {
-          klasa = "odsutan";
+        let klasa = "bijelo";
+        if (unos) {
+          klasa = "prisutan";
+          if (j + 1 > unos.predavanja) {
+            klasa = "odsutan";
+          }
         }
 
         let td = document.createElement("td");

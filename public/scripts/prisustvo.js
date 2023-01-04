@@ -14,12 +14,6 @@ let objekat = {
     {
       sedmica: 1,
       predavanja: 2,
-      vjezbe: 1,
-      index: 12345,
-    },
-    {
-      sedmica: 1,
-      predavanja: 2,
       vjezbe: 2,
       index: 12346,
     },
@@ -103,3 +97,5 @@ let objekat = {
 
 //instanciranje
 let prisustvo = TabelaPrisustvo(div, objekat);
+
+function promijeni() {}
