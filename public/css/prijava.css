@@ -1,3 +1,14 @@
 #prostor_za_poruku{
     color: red;
+   
+}
+
+#formaPrijava{
+    margin-top: 200px;
+    margin-left: 620px;
+    
+}
+
+html{
+    background-color: rgb(255, 185, 99);
 }

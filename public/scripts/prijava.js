@@ -12,6 +12,7 @@ function potvrdi() {
         .getElementById("prostor_za_poruku")
         .appendChild(document.createTextNode(data));
     } else {
+      sessionStorage.setItem("korisnik", username);
       window.open("http://localhost:3000/predmet.html");
     }
   });

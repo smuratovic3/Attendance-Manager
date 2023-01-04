@@ -10,11 +10,6 @@ app.use(express.static(path.join(__dirname + "/public/scripts")));
 app.use(bodyParser.json()); // naglasavamo serveru da moze koristiti jason format
 app.use(bodyParser.urlencoded({ extended: true })); // da moze koristit afrikate
 
-app.get("/vjezbe/", function (req, res) {
-  console.log("Semina");
-  res.status(200).json({ poruka: "dobro je" });
-});
-
 app.post("/login/", function (req, res) {
   console.log("Semina", req.body);
   let provjera = false;
