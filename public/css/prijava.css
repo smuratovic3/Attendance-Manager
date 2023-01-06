@@ -1,6 +1,6 @@
 #prostor_za_poruku{
     color: red;
-   
+   background-color: bisque;
 }
 
 #formaPrijava{
@@ -10,5 +10,5 @@
 }
 
 html{
-    background-color: rgb(255, 185, 99);
+    background-color: rgb(252, 188, 109);
 }
