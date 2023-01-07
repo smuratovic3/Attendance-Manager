@@ -8,7 +8,7 @@ let TabelaPrisustvo = function (divRef, podaci) {
     }
   }
 
-  function dodajNazivPredmeta() {
+  /*function dodajNazivPredmeta() {
     //Naziv predmeta i broj predavanja i vjezbi sedmicno
     var predmet = document.createElement("h1");
     predmet.textContent = podaci.predmet;
@@ -23,7 +23,7 @@ let TabelaPrisustvo = function (divRef, podaci) {
     brVjSedm.textContent = "Broj vježbi sedmično: " + podaci.brojVjezbiSedmicno;
     divSadrzaj.appendChild(brVjSedm);
   }
-
+*/
   function provjeriDuplikat(array) {
     return new Set(array).size !== array.length;
   }
@@ -173,7 +173,7 @@ let TabelaPrisustvo = function (divRef, podaci) {
     return;
   }
 
-  dodajNazivPredmeta();
+  //dodajNazivPredmeta();
 
   function iscrtajtabelu(sedmicaUFokusu) {
     let table = document.createElement("table");
@@ -386,7 +386,7 @@ let TabelaPrisustvo = function (divRef, podaci) {
     sedmicaUFokusu++;
     if (sedmicaUFokusu <= sedmice.length) {
       isprazniSadrzaj();
-      dodajNazivPredmeta();
+      // dodajNazivPredmeta();
       iscrtajtabelu(sedmicaUFokusu);
       dodajButtone();
     } else {
@@ -398,7 +398,7 @@ let TabelaPrisustvo = function (divRef, podaci) {
     sedmicaUFokusu--;
     if (sedmicaUFokusu > 0) {
       isprazniSadrzaj();
-      dodajNazivPredmeta();
+      //dodajNazivPredmeta();
       iscrtajtabelu(sedmicaUFokusu);
       dodajButtone();
     } else {

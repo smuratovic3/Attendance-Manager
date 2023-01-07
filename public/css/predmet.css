@@ -93,3 +93,35 @@ img {
         width: auto;
     }
 }
+
+.odjava{
+    height: 100px;
+    background-color : blue;
+    width: 30%;
+}
+.dugme{
+    background-color: red;
+}
+
+.header{
+    background-color: green;
+    display: flex;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 150px;
+    width: 100%;
+    flex-direction: row;
+}
+.predmeti{
+    display: flex;
+    background-color: yellow;
+    width: 70%;
+    justify-content: space-around;
+    align-items: center;
+    
+
+}
+.wrapper2{
+    
+}

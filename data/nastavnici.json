@@ -2,18 +2,18 @@
     {
     "nastavnik": {
     "username": "a",
-    "password_hash": "b"
+    "password_hash": "$2b$10$alzqW1AwkdWUtnpJ.60bYeTH2D6lIMAjp84kRpahnL/PQ2nobvjo."
     },
     "predmeti": [
-    "DM",
-    "PREDMET2",
-    "PREDMET3"
+    "Diskretna matematika",
+    "Tehnike programiranja",
+    "Numerički algoritmi"
     ]
     },
     {
     "nastavnik": {
-    "username": "USERNAME2",
-    "password_hash": "PASSWORDHASH2"
+    "username": "c",
+    "password_hash": "$2b$10$a0DrT7YGV.tiqmqyxlcwJOuk.hA2Ls.m9A1Jou.UTP/Fu4Bv9eArK"
     },
     "predmeti": [
     "PREDMET1"
