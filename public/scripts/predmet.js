@@ -37,7 +37,13 @@ function logout() {
     if (error != null) {
       console.log("greska");
     } else {
-      window.open("http://localhost:3000/prijava.html");
+      //window.open("http://localhost:3000/prijava.html");
+      window.location.href = "http://localhost:3000/prijava.html";
     }
   });
+}
+
+//fja za mouseover
+function myFunction() {
+  document.querySelector("#predmeti").style.cursor = "pointer";
 }

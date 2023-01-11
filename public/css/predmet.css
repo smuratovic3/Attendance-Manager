@@ -96,15 +96,18 @@ img {
 
 .odjava{
     height: 100px;
-    background-color : blue;
+    background-color : rgb(255, 166, 0);
     width: 30%;
 }
 .dugme{
-    background-color: red;
+    background-color: rgb(244, 244, 243);
+    margin-left: 365px;
+    height: 40%;
+    width: 20%;
 }
 
 .header{
-    background-color: green;
+    background-color: rgb(255, 166, 0);
     display: flex;
     top: 0;
     right: 0;
@@ -115,13 +118,14 @@ img {
 }
 .predmeti{
     display: flex;
-    background-color: yellow;
+    background-color:rgb(255, 166, 0);
     width: 70%;
     justify-content: space-around;
     align-items: center;
+    cursor: pointer;
     
 
 }
 .wrapper2{
-    
+  background-color: bisque;
 }

@@ -13,7 +13,8 @@ function potvrdi() {
         .appendChild(document.createTextNode(data));
     } else {
       sessionStorage.setItem("korisnik", username);
-      window.open("http://localhost:3000/predmeti.html");
+      //window.open("http://localhost:3000/predmeti.html");
+      window.location.href = "http://localhost:3000/predmeti.html";
     }
   });
 }
