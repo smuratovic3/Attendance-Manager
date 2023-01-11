@@ -85,5 +85,7 @@ app.get("/predmet/:naziv", function (req, res) {
   }
 });
 
+app.post("/prisustvo/predmet/:NAZIV/student/:index", function (req, res) {});
+
 app.listen(3000);
 module.exports = app;

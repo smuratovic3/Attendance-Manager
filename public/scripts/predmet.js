@@ -47,3 +47,13 @@ function logout() {
 function myFunction() {
   document.querySelector("#predmeti").style.cursor = "pointer";
 }
+
+//listener za tabelu, šta je kliknuto
+let prisustvoTabela = document.getElementById("kontejner");
+prisustvoTabela.addEventListener;
+// Add the event listener
+prisustvoTabela.addEventListener("click", function (event) {
+  // event.target refers to the element that was clicked
+  var clickedElement = event.target;
+  console.log("Pritisnuto je:", clickedElement);
+});
