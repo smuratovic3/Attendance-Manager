@@ -3,6 +3,8 @@ function potvrdi() {
   let password = document.getElementById("password").value;
 
   PoziviAjax.postLogin(username, password, function (error, data) {
+    /*let jsonParsed = JSON.parse(data);
+    console.log(jsonParsed.poruka);*/
     if (document.getElementById("prostor_za_poruku").lastChild)
       document
         .getElementById("prostor_za_poruku")

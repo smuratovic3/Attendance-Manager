@@ -58,6 +58,7 @@ const PoziviAjax = (() => {
     var ajax = new XMLHttpRequest();
     ajax.onreadystatechange = function () {
       if (ajax.readyState == 4 && ajax.status == 200) {
+        console.log("semina", ajax.responseText);
         fnCallback(null, ajax.responseText);
       } else if (ajax.readyState == 4 && ajax.status == 404) {
         fnCallback(ajax.statusText, ajax.responseText);

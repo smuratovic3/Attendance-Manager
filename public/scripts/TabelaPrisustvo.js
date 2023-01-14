@@ -1,4 +1,6 @@
-let TabelaPrisustvo = function (divRef, podaci) {
+let sedmicaUFokusu;
+
+let TabelaPrisustvo = function (divRef, podaci, trenutnaSedmica = -1) {
   const MAKSIMALNI_BROJ_SEDMICA = 15;
 
   // Provjeri da li je div prazan
@@ -154,7 +156,12 @@ let TabelaPrisustvo = function (divRef, podaci) {
   sedmice.sort();
 
   // Sedmica u fokusu
-  let sedmicaUFokusu = sedmice.length;
+
+  if (trenutnaSedmica != -1) {
+    sedmicaUFokusu = trenutnaSedmica;
+  } else {
+    sedmicaUFokusu = sedmice.length;
+  }
 
   isprazniSadrzaj();
 
@@ -321,6 +328,7 @@ let TabelaPrisustvo = function (divRef, podaci) {
       let secondRowContentTr = document.createElement("tr");
 
       // Prisustvo --> Predavanja
+
       for (let j = 0; j < podaci.brojPredavanjaSedmicno; j++) {
         const unos = podaci.prisustva.find(function (p) {
           return (
@@ -328,9 +336,15 @@ let TabelaPrisustvo = function (divRef, podaci) {
             p.sedmica === sedmice[sedmicaUFokusu - 1]
           );
         });
+        let predavanja = null;
+        let vjezbe = null;
 
+        // console.log("unos", unos);
         let klasa = "bijelo";
         if (unos) {
+          predavanja = unos.predavanja;
+          vjezbe = unos.vjezbe;
+
           klasa = "prisutan";
           if (j + 1 > unos.predavanja) {
             klasa = "odsutan";
@@ -344,10 +358,26 @@ let TabelaPrisustvo = function (divRef, podaci) {
 */
 
         let td = document.createElement("td");
-        //td.setAttribute("onclick","promijeni()")
+        td.setAttribute(
+          "id",
+          podaci.predmet +
+            "-" +
+            sedmicaUFokusu +
+            "-" +
+            predavanja +
+            "-" +
+            vjezbe +
+            "-" +
+            student.index +
+            "-" +
+            "P"
+        );
         td.classList.add(klasa);
         secondRowContentTr.appendChild(td);
       }
+
+      let predavanja = null;
+      let vjezbe = null;
 
       // Prisustvo --> Vjezbe
       for (let j = 0; j < podaci.brojVjezbiSedmicno; j++) {
@@ -360,13 +390,30 @@ let TabelaPrisustvo = function (divRef, podaci) {
 
         let klasa = "bijelo";
         if (unos) {
+          predavanja = unos.predavanja;
+          vjezbe = unos.vjezbe;
+
           klasa = "prisutan";
-          if (j + 1 > unos.predavanja) {
+          if (j + 1 > unos.vjezbe) {
             klasa = "odsutan";
           }
         }
 
         let td = document.createElement("td");
+        td.setAttribute(
+          "id",
+          podaci.predmet +
+            "-" +
+            sedmicaUFokusu +
+            "-" +
+            predavanja +
+            "-" +
+            vjezbe +
+            "-" +
+            student.index +
+            "-" +
+            "V"
+        );
         td.classList.add(klasa);
         secondRowContentTr.appendChild(td);
       }
@@ -395,14 +442,12 @@ let TabelaPrisustvo = function (divRef, podaci) {
   };
 
   let prethodnaSedmica = function () {
-    sedmicaUFokusu--;
-    if (sedmicaUFokusu > 0) {
+    if (sedmicaUFokusu > 1) {
+      sedmicaUFokusu--;
       isprazniSadrzaj();
       //dodajNazivPredmeta();
       iscrtajtabelu(sedmicaUFokusu);
       dodajButtone();
-    } else {
-      sedmicaUFokusu++;
     }
   };
 

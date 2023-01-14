@@ -1,8 +1,9 @@
 window.onload = function () {
   PoziviAjax.getPredmeti(function (error, data) {
     if (error != null) {
+      data = JSON.parse(data);
       let kontejner = document.getElementById("predmeti");
-      kontejner.appendChild(document.createTextNode(data));
+      kontejner.appendChild(document.createTextNode(data.greska));
     } else {
       data = JSON.parse(data);
 
@@ -19,13 +20,14 @@ window.onload = function () {
   ///dalja logika za odgovarajuce predmete
 };
 
+let podaci;
 function otvoriPredmet(kartica) {
   console.log("Naziv:", kartica.innerText);
   PoziviAjax.getPredmet(kartica.innerText, function (error, data) {
     if (error != null) {
       console.log("greska");
     } else {
-      let podaci = JSON.parse(data);
+      podaci = JSON.parse(data);
       let kontejner = document.getElementById("kontejner");
       let prisustvo = TabelaPrisustvo(kontejner, podaci);
     }
@@ -55,5 +57,70 @@ prisustvoTabela.addEventListener;
 prisustvoTabela.addEventListener("click", function (event) {
   // event.target refers to the element that was clicked
   var clickedElement = event.target;
-  console.log("Pritisnuto je:", clickedElement);
+  if (
+    clickedElement.className === "odsutan" ||
+    clickedElement.className === "prisutan" ||
+    clickedElement.className === "bijelo"
+  ) {
+    let nizPodataka = clickedElement.id.split("-");
+    let brojIndexa = parseInt(nizPodataka[4]);
+    let brojPredavanja = parseInt(nizPodataka[2]);
+    let brojVjezbi = parseInt(nizPodataka[3]);
+    let nazivPredmeta = nizPodataka[0];
+    let brojSedmice = parseInt(nizPodataka[1]);
+
+    if (nizPodataka[5] === "P") {
+      if (clickedElement.className === "prisutan") {
+        if (brojPredavanja > 0) {
+          brojPredavanja--;
+        }
+      } else if (
+        clickedElement.className === "odsutan" ||
+        brojPredavanja === NaN
+      ) {
+        if (!brojPredavanja) {
+          brojPredavanja = 1;
+        } else if (brojPredavanja < podaci.brojPredavanjaSedmicno) {
+          brojPredavanja++;
+        }
+      } else {
+        brojPredavanja = 1;
+      }
+    } else {
+      if (clickedElement.className === "prisutan") {
+        if (brojVjezbi > 0) {
+          brojVjezbi--;
+        }
+      } else if (clickedElement.className === "odsutan" || brojVjezbi === NaN) {
+        if (!brojVjezbi) {
+          brojVjezbi = 1;
+        } else if (brojVjezbi < podaci.brojVjezbiSedmicno) {
+          brojVjezbi++;
+        }
+      } else {
+        brojVjezbi = 1;
+      }
+    }
+    let prisustvoObjekat = {
+      sedmica: brojSedmice,
+      predavanja: brojPredavanja,
+      vjezbe: brojVjezbi,
+    };
+    console.log("prisustvo", prisustvoObjekat);
+    window.sedmicaUFokusu = brojSedmice;
+    PoziviAjax.postPrisustvo(
+      nazivPredmeta,
+      brojIndexa,
+      prisustvoObjekat,
+      function (error, data) {
+        if (error) {
+        } else {
+          podaci = JSON.parse(data);
+          console.log("podaci", podaci);
+          let kontejner = document.getElementById("kontejner");
+          let prisustvo = TabelaPrisustvo(kontejner, podaci, brojSedmice);
+        }
+      }
+    );
+  }
 });
