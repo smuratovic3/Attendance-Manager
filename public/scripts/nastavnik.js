@@ -1,15 +1,14 @@
 const Sequelize = require("sequelize");
 
 module.exports = function (sequelize, DataTypes) {
-  const Predmeti = sequelize.define("predmeti", {
+  const Nastavnik = sequelize.define("nastavnik", {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    predmet: Sequelize.STRING,
-    brojPredavanjaSedmicno: Sequelize.INTEGER,
-    brojVjezbiSedmicno: Sequelize.INTEGER,
+    username: Sequelize.STRING,
+    password_hash: Sequelize.STRING,
   });
-  return Predmeti;
+  return Nastavnik;
 };

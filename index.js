@@ -7,6 +7,7 @@ const prisustva = require("./data/prisustva.json");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
+const baza = require("./baza.js");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
