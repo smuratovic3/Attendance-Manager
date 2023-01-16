@@ -7,7 +7,7 @@ const prisustva = require("./data/prisustva.json");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
-const baza = require("./baza.js");
+const sequelize = require("./public/scripts/baza");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,6 +23,16 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+sequelize.sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully.");
+  })
+  .catch((error) => {
+    console.log(error);
+    console.log("Error in establishing connection");
+  });
 
 //post zahtjev gdje se vrsi provjera da li korisnik postoji i da li je ispravna sifra
 app.post("/login/", function (req, res) {
