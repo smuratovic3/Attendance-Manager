@@ -119,6 +119,12 @@ prisustvoTabela.addEventListener("click", function (event) {
           console.log("podaci", podaci);
           let kontejner = document.getElementById("kontejner");
           let prisustvo = TabelaPrisustvo(kontejner, podaci, brojSedmice);
+          //da se ne vraća na zadnju sedmicu kada unosim prisustvo za ostale
+          let i = sedmicaUFokusu;
+          while (i > brojSedmice) {
+            prisustvo.prethodnaSedmica();
+            i--;
+          }
         }
       }
     );

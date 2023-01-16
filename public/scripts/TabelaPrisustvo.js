@@ -1,6 +1,6 @@
 let sedmicaUFokusu;
 
-let TabelaPrisustvo = function (divRef, podaci, trenutnaSedmica = -1) {
+let TabelaPrisustvo = function (divRef, podaci) {
   const MAKSIMALNI_BROJ_SEDMICA = 15;
 
   // Provjeri da li je div prazan
@@ -156,12 +156,7 @@ let TabelaPrisustvo = function (divRef, podaci, trenutnaSedmica = -1) {
   sedmice.sort();
 
   // Sedmica u fokusu
-
-  if (trenutnaSedmica != -1) {
-    sedmicaUFokusu = trenutnaSedmica;
-  } else {
-    sedmicaUFokusu = sedmice.length;
-  }
+  sedmicaUFokusu = sedmice.length;
 
   isprazniSadrzaj();
 
