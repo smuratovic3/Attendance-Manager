@@ -7,7 +7,8 @@ const prisustva = require("./data/prisustva.json");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
-const sequelize = require("./public/scripts/baza");
+const baza = require("./models/baza");
+const predmeti = require("./models/predmeti");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,7 +25,7 @@ app.use(
   })
 );
 
-sequelize.sequelize
+baza.sequelize
   .authenticate()
   .then(() => {
     console.log("Connection has been established successfully.");
@@ -34,23 +35,28 @@ sequelize.sequelize
     console.log("Error in establishing connection");
   });
 
-//post zahtjev gdje se vrsi provjera da li korisnik postoji i da li je ispravna sifra
-app.post("/login/", function (req, res) {
-  for (let i = 0; i < nastavnici.length; i++) {
-    if (nastavnici[i].nastavnik.username === req.body.username) {
-      bcrypt.compare(
+app.post("/login/", async function (req, res) {
+  try {
+    const nastavnik = await baza.nastavnik.findOne({
+      where: { username: req.body.username },
+    });
+    if (nastavnik) {
+      const match = await bcrypt.compare(
         req.body.password,
-        nastavnici[i].nastavnik.password_hash,
-        (err, result) => {
-          if (result) {
-            req.session.user = req.body;
-            res.status(200).json({ poruka: "Uspješna prijava" });
-          } else {
-            res.status(404).json({ poruka: "Neuspješna prijava" });
-          }
-        }
+        nastavnik.password_hash
       );
+      if (match) {
+        req.session.user = nastavnik.dataValues;
+        res.status(200).json({ poruka: "Uspješna prijava" });
+      } else {
+        res.status(404).json({ poruka: "Neuspješna prijava" });
+      }
+    } else {
+      res.status(404).json({ poruka: "Neuspješna prijava" });
     }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ poruka: "Greška prilikom prijave" });
   }
 });
 
@@ -66,20 +72,26 @@ app.post("/logout/", function (req, res) {
 });
 
 // get zahtjev za loginovanog nastavnika, ako nije loginovan poruka Nastavnik nije loginovan
-app.get("/predmeti/", function (req, res) {
+app.get("/predmeti/", async (req, res) => {
   if (!req.session.user) {
     res.status(404).json({ greska: "Nastavnik nije loginovan" });
     console.log("poruka");
   } else {
     let korisnickoIme = req.session.user.username;
-    let predmeti;
-    for (let i = 0; i < nastavnici.length; i++) {
-      if (nastavnici[i].nastavnik.username === korisnickoIme) {
-        predmeti = nastavnici[i].predmeti;
-        break;
-      }
+
+    try {
+      let predmeti = await baza.predmeti.findAll({
+        where: {
+          nastavnikId: req.session.user.id,
+        },
+      });
+      predmeti = predmeti.map((p) => p.dataValues.predmet);
+      console.log("semina", predmeti);
+      res.status(200).json(predmeti);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ greska: "Greska prilikom dohvatanja predmeta" });
     }
-    res.status(200).json(predmeti);
   }
 });
 
@@ -142,8 +154,6 @@ app.post("/prisustvo/predmet/:NAZIV/student/:index", function (req, res) {
       }
     }
   );
-  /*console.log(prisustva[indexPrisustva]);
-  res.status(200).json(prisustva[indexPrisustva]);*/
 });
 
 app.listen(3000);

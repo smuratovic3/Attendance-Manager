@@ -48,7 +48,7 @@ const PoziviAjax = (() => {
         fnCallback("greska", "");
       }
     };
-    console.log("radi 2");
+
     ajax.open("POST", "http://localhost:3000/logout", true);
     //ajax.setRequestHeader("Content-Type", "application/json");
     ajax.send();
