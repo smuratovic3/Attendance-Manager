@@ -1,23 +1,22 @@
 const Sequelize = require("sequelize");
 
 module.exports = function (sequelize, DataTypes) {
-  const Prisustva = sequelize.define(
-    "prisustva",
+  const Predmet = sequelize.define(
+    "predmet",
     {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      sedmica: Sequelize.INTEGER,
-      predavanja: Sequelize.INTEGER,
-      vjezbe: Sequelize.INTEGER,
-      indeks: Sequelize.INTEGER,
+      predmet: Sequelize.STRING,
+      brojPredavanjaSedmicno: Sequelize.INTEGER,
+      brojVjezbiSedmicno: Sequelize.INTEGER,
     },
     {
       createdAt: false,
       updatedAt: false,
     }
   );
-  return Prisustva;
+  return Predmet;
 };
