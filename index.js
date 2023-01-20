@@ -9,6 +9,7 @@ const bcrypt = require("bcrypt");
 const fs = require("fs");
 const baza = require("./models/baza");
 const predmeti = require("./models/predmet");
+const prisustvo = require("./models/prisustvo");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -112,24 +113,22 @@ app.get("/predmet/:naziv", async function (req, res) {
           predmetId: predmet.id,
         },
       });
-      console.log(prisustva);
+
       let studenti = await baza.student.findAll({
         where: {
           predmetId: predmet.id,
         },
       });
 
-      console.log(studenti);
-
       //određene informacije iz niza, uzimam i pravim novi niz
       prisustva = prisustva.map((p) => p.dataValues);
       studenti = studenti.map((p) => p.dataValues);
-      studenti.forEach((element) => {
-        element.index = element.indeks;
-      });
-      prisustva.forEach((element) => {
-        element.index = element.indeks;
-      });
+      for (let i = 0; i < studenti.length; i++) {
+        studenti[i].index = studenti[i].indeks;
+      }
+      for (let i = 0; i < prisustva.length; i++) {
+        prisustva[i].index = prisustva[i].indeks;
+      }
 
       const rezultat = {
         studenti,
@@ -138,7 +137,7 @@ app.get("/predmet/:naziv", async function (req, res) {
         brojVjezbiSedmicno,
         predmet: predmet.predmet,
       };
-      console.log(rezultat);
+      //console.log(rezultat);
       res.status(200).json(rezultat);
     }
   } catch (error) {
@@ -146,57 +145,76 @@ app.get("/predmet/:naziv", async function (req, res) {
   }
 });
 
-/*app.post("/prisustvo/predmet/:NAZIV/student/:index", async function (req, res) {
-
-  let nazivPredmeta = req.params.NAZIV;
-  let index = parseInt(req.params.index);
-  let prisustvo = req.body;
-  let provjera = false;
+app.post("/prisustvo/predmet/:NAZIV/student/:index", async (req, res) => {
   try {
-    const prisustva = await baza.prisustvo.findAll({
-      where: {
-        predmet: nazivPredmeta,
-        index: index,
-        sedmica: prisustvo.sedmica,
-      },
+    const naziv = req.params.NAZIV;
+    const indeks = parseInt(req.params.index);
+    const sedmica = req.body.sedmica;
+    const predavanja = req.body.predavanja;
+    const vjezbe = req.body.vjezbe;
+
+    // Nadji predmet po nazivu
+    let predmet = await baza.predmet.findOne({ where: { predmet: naziv } });
+    predmet = predmet.dataValues;
+
+    // Nadji sva prisustva za predmet
+    let prisustva = await baza.prisustvo.findAll({
+      where: { predmetId: predmet.id },
     });
-    if (prisustva.length > 0) {
-      provjera = true;
-      await baza.prisustva.update(
-        {
-          predavanja: prisustvo.predavanja,
-          vjezbe: prisustvo.vjezbe,
-        },
-        {
-          where: {
-            predmet: nazivPredmeta,
-            index: index,
-            sedmica: prisustvo.sedmica,
-          },
-        }
-      );
-      res.status(200).json({
-        tekst: "Prisustvo uspjesno azurirano ",
-      });
-    } else {
-      await baza.prisustva.create({
-        predmet: nazivPredmeta,
-        index: index,
-        sedmica: prisustvo.sedmica,
-        predavanja: prisustvo.predavanja,
-        vjezbe: prisustvo.vjezbe,
-      });
-      res.status(200).json({
-        tekst: "Prisustvo kreirano",
+
+    // Nadji sve studente za predmet
+    let studenti = await baza.student.findAll({
+      where: { predmetId: predmet.id },
+    });
+
+    let prisustvoExists = false;
+    const targetPrisustvo = prisustva.find(
+      (obj) => obj.sedmica == sedmica && obj.indeks == indeks
+    );
+
+    if (targetPrisustvo) {
+      prisustvoExists = true;
+      targetPrisustvo.predavanja = predavanja;
+      targetPrisustvo.vjezbe = vjezbe;
+      await targetPrisustvo.save();
+    }
+    // Kreirati novo prisustvo ako ne postoji
+    if (!prisustvoExists) {
+      await baza.prisustvo.create({
+        sedmica: sedmica,
+        predavanja: predavanja,
+        vjezbe: vjezbe,
+        indeks: indeks,
+        predmetId: predmet.id,
       });
     }
+
+    const povratniStudenti = studenti.map((student) => ({
+      ime: student.ime,
+      index: student.indeks,
+    }));
+
+    let povratnaPrisustva = prisustva.map((item) => ({
+      sedmica: item.sedmica,
+      predavanja: item.predavanja,
+      vjezbe: item.vjezbe,
+      index: item.indeks,
+    }));
+
+    let jsonPodaci = {
+      studenti: povratniStudenti,
+      prisustva: povratnaPrisustva,
+      predmet: predmet.predmet,
+      brojPredavanjaSedmicno: predmet.brojPredavanjaSedmicno,
+      brojVjezbiSedmicno: predmet.brojVjezbiSedmicno,
+    };
+    // Poslati odgovor sa updateanim podacima
+    res.status(200).json(jsonPodaci);
   } catch (error) {
-    res.status(500).json({
-      message: "Error pri kreiranju prisustva",
-      error: error,
-    });
+    console.log(error);
+    res.status(500).send("Error");
   }
 });
-*/
+
 app.listen(3000);
 module.exports = app;
