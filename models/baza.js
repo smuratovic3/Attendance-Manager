@@ -26,7 +26,6 @@ baza.predmet.hasMany(baza.student, { as: "studentPredmeti" });
 //prisustva
 baza.predmet.hasMany(baza.prisustvo, { as: "predmetPrisustva" });
 
-/*
 setTimeout(() => {
   baza.nastavnik.sync({ force: true });
 }, 200);
@@ -41,8 +40,6 @@ setTimeout(() => {
 setTimeout(() => {
   baza.prisustvo.sync({ force: true });
 }, 800);
-*/
-//baza.sequelize.sync({ force: false });
 
 async function punjenjeBaze() {
   await baza.nastavnik.create({
@@ -99,8 +96,8 @@ async function punjenjeBaze() {
     predmetId: 1,
   });
 }
-/*setTimeout(() => {
+setTimeout(() => {
   punjenjeBaze();
 }, 1000);
-*/
+
 module.exports = baza;
